@@ -15,7 +15,8 @@ data :
 # Validate that downloaded data is not corrupted
 validate :
 	curl -L -o lab0_spectral_data.md5sum https://www.dropbox.com/s/6jquiryg6jskii0/lab0_spectral_data.md5?dl=0
-	md5sum -c lab0_spectral_data.md5sum
+	md5sum -c lab0_spectral_data.md5su
+	#brew install md5sha1sum
 # Run tests on analysis code
 test :
 	nosetests --no-byte-compile test/*
