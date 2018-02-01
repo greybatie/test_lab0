@@ -57,6 +57,23 @@ plt.semilogy(chan, Eu152, label='Eu-152')
 plt.legend()
 plt.xlabel('Channel Number')
 plt.ylabel('Number of Counts')
-plt.title('Imported Raw Data')
+plt.title('Imported Raw Data (Uncalibrated)')
 plt.savefig('/Users/margobatie/repos/NE204_lab0/images/rawdata.png')
-plt.show()
+#plt.show()
+plt.close()
+
+#plot of calibrated data_analysis
+plt.semilogy(energies, Am241, label='Am-241')
+plt.semilogy(energies, Cs137, label='Cs-137')
+plt.legend()
+plt.xlabel('Energy (keV)')
+plt.ylabel('Number of Counts')
+plt.title('Calibrated Plot of Am-241 and Cs-137')
+plt.savefig('/Users/margobatie/repos/NE204_lab0/images/cal_AmCs.png')
+plt.close()
+#plt.show()
+
+from find_nearest import find_near
+#intensity of 80.99 (32.9%) and 79.61 (2.6%)
+Ba133_energies=[80.9979,276.3989,302.8508, 356.0129,383.8485]
+dE=20
