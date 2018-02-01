@@ -74,6 +74,32 @@ plt.close()
 #plt.show()
 
 from find_nearest import find_near
+
 #intensity of 80.99 (32.9%) and 79.61 (2.6%)
-Ba133_energies=[80.9979,276.3989,302.8508, 356.0129,383.8485]
-dE=20
+
+
+Ba_a=[80.9979,276.3989,302.8508, 356.0129,383.8485] #Bactual intensities of Ba133
+Ba_e=[] #expected intensities of Ba133
+percent_diff=[]
+dE=10
+table=[]
+
+#this loop finds the max energy in the range around each Ba_a value (or the centroid)
+for x in range(0,5):
+    minE=Ba_a[int(x)]-dE
+    maxE=Ba_a[int(x)]+dE
+
+    nearestmin=find_near(energies,minE)
+    nearestmax=find_near(energies,maxE)
+
+    Erange=energies[nearestmin[0]:nearestmax[0]]
+    Countrange=Ba133[nearestmin[0]:nearestmax[0]]
+    #print(Erange, Countrange)
+    maxcounts=max(Countrange)
+    ECentroid=Erange[Countrange.index(maxcounts)]
+    Ba_e.append(ECentroid)
+    percent_diff.append((Ba_e[x]-Ba_a[x])/Ba_a[x])
+    table.append([Ba_a[x], Ba_e[x], percent_diff[x]])
+
+
+np.savetxt('/Users/margobatie/repos/NE204_lab0/images/peakdiffquant.csv', table)
