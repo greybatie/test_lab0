@@ -28,3 +28,35 @@ len(Cs137)==len(Am241)==len(Cs137)==len(Co60)==len(Eu152)==8192
 
 chan=list(range(1,len(Cs137)+1)) #number of channels:8192
 #sources=[ for i in chan Am241[i]+Ba133[i]+Cs137[i]+Co60[i]+Eu152[i]]
+
+centroid_Cs=np.argmax(Cs137) # 661.66 keV
+centroid_Am=np.argmax(Am241) # 59.54 keV
+
+x1=centroid_Am
+x2=centroid_Cs
+
+y1=59.5409
+y2=661.657
+
+energies=[]
+m=float(y2-y1)/(x2-x1)
+b=float(-m*x1+y1)
+#print(m,b)
+chan_array=np.array(chan)
+
+for i in chan:
+    energies.append(np.multiply(m, chan_array[i-1])+b)
+
+
+#makes pretty of raw data
+plt.semilogy(chan, Am241, label='Am-241')
+plt.semilogy(chan, Ba133, label='Ba-133')
+plt.semilogy(chan, Cs137, label='Cs-137')
+plt.semilogy(chan,Co60, label='Co-60')
+plt.semilogy(chan, Eu152, label='Eu-152')
+plt.legend()
+plt.xlabel('Channel Number')
+plt.ylabel('Number of Counts')
+plt.title('Imported Raw Data')
+plt.savefig('/Users/margobatie/repos/NE204_lab0/images/rawdata.png')
+plt.show()
