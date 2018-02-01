@@ -82,7 +82,6 @@ Ba_a=[80.9979,276.3989,302.8508, 356.0129,383.8485] #Bactual intensities of Ba13
 Ba_e=[] #expected intensities of Ba133
 percent_diff=[]
 dE=10
-table=[]
 
 #this loop finds the max energy in the range around each Ba_a value (or the centroid)
 for x in range(0,5):

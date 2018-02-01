@@ -19,7 +19,7 @@ validate :
 	#brew install md5sha1sum
 # Run tests on analysis code
 test :
-	nosetests --no-byte-compile test/*
+	cd test/ && python test_calibration.py
 
 # Automate running the analysis code
 analysis :
